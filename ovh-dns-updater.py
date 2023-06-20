@@ -23,14 +23,29 @@ can be provided in variety of ways:
 -or in the ENVIRONMENT 
 -or in a ovh.conf file
 in which cases we can call with no argument (the ovh module gets the credentials on its own):
+
+file ovh.conf eg :
+[default]
+; general configuration: default endpoint
+endpoint=ovh-eu
+
+[ovh-eu]
+; configuration specific to 'ovh-eu' endpoint
+application_key=my_app_key
+application_secret=my_application_secret
+consumer_key=my_consumer_key
+
+file location defaults : Current working directory: ./ovh.conf
+Current user's home directory ~/.ovh.conf
+System wide configuration /etc/ovh.conf
 '''
 client = ovh.Client()
 
 # Should missing IP address being considered as error (Depend on the ISP, internet box settings...)?
 # In case a required IP cannot be obtained, the script will send an email and stop without updating anything. 
 # If, for any reason, IPv4 or IPv6 address cannot be obtained and if it is not protected by this list, the corresponding records will be deleted for all hosts.
-ip_versions_required = [4] # MUST not be empty. Can be [4],[6] or [4,6] 
-
+#ip_versions_required = [4] # MUST not be empty. Can be [4],[6] or [4,6] 
+ip_versions_required = [6] 
 default_ttl =  600  # seconds
 # ttl = how long will a DNS server cache the value before checking it at the Registrar. Longer value yields faster name resolution most of the time, but less frequent updates
 
