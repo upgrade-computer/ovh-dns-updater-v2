@@ -81,7 +81,8 @@ This will allow the script to
 - create inexistent records and refresh (POST)
 - delete record if the ipv6 or ipv4 address no longer exists
 
-The keys delivered should be inserted in the script. 
+The keys delivered should be inserted in the ovh.conf file, next to the script.
+Alternative ways to configure OVH Credentials are as follow : 
 
 Other config parameters (domain names etc.) are also setup directly inside the script. See explanations in the code.
 
