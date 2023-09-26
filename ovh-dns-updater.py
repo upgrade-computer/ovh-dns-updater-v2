@@ -50,6 +50,24 @@ default_ttl =  600  # seconds
 # ttl = how long will a DNS server cache the value before checking it at the Registrar. Longer value yields faster name resolution most of the time, but less frequent updates
 
 # list of hosts (=subdomain.domain.tld) to update, each a dictionnary with at least "domain" and "subdomain" defined
+# Exemple : 
+#hosts = [
+#        {
+#           "domain": "exemple.ovh",
+#           "subdomain": "myhost", or "", (for @) or "*", for wildcard
+#           "ipv6": "True", / "False",
+#           "ipv4": "True", / "False",
+#           "ttl": "60" - "3600"
+#        },
+#        {
+#           "domain": "mydomain.ovh",
+#           "subdomain": "myhost", or "", (for @) or "*", for wildcard
+#           "ipv6": "True", / "False",
+#           "ipv4": "True", / "False",
+#           "ttl": "60" - "3600"
+#        }
+#    ]
+#
 hosts = [
         {
             "domain": "mydomain.tld", # Required
