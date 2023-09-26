@@ -82,7 +82,8 @@ This will allow the script to
 - delete record if the ipv6 or ipv4 address no longer exists
 
 The keys delivered should be inserted in the ovh.conf file, next to the script.
-Alternative ways to configure OVH Credentials are as follow : 
+
+Alternative ways to configure OVH Credentials : https://github.com/ovh/python-ovh#configuration
 
 Other config parameters (domain names etc.) are also setup directly inside the script. See explanations in the code.
 
