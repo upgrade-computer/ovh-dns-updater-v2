@@ -64,6 +64,17 @@ PUT /domain/zone/*
 POST /domain/zone/*
 DELETE /domain/zone/* (optionnal, since should rarely be useful)
 ```
+
+With security in mind, if youre using a single OVH account, to manage multiples domains, authorisations should then be set as a 'per domain' basis : 
+
+```
+GET /domain/zone/
+GET /domain/zone/example.ovh/*
+PUT /domain/zone/example.ovh/*
+POST /domain/zone/example.ovh/*
+DELETE /domain/zone/example.ovh/*
+```
+
 This will allow the script to
 - read the statuses of your domains/subdomains (GET)
 - update records (PUT)
