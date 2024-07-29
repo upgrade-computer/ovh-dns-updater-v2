@@ -103,6 +103,7 @@ def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain
 
   except smtplib.SMTPException:
      print( timestamp()," : Error unable to send DNS Update Problem email" % str(error))
+          
 '''
 If You whish to use 'localhost' configured SMTP, you can use this code instead)
 def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain.com') :
