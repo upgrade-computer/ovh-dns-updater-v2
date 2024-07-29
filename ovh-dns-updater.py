@@ -102,9 +102,9 @@ def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain
      print (timestamp()," : DNS Update Problem : email successfully sent!")
 
   except smtplib.SMTPException:
-     print( timestamp()," : Error unable to send DNS Update Problem email")
+     print( timestamp()," : Error unable to send DNS Update Problem email" % str(error))
 '''
-OLD CODE
+If You whish to use 'localhost' configured SMTP, you can use this code instead)
 def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain.com') :
   import smtplib
 
@@ -116,35 +116,6 @@ def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain
   except smtplib.SMTPException:
      print( timestamp()," : Error unable to send email")
 '''
-
-#Email Test 
-'''
-#!/usr/bin/env python
-import smtplib
-sender = "sachinites@gmail.com"
-receivers = ["abhisheks@cse.iitb.ac.in"]
-yourname = "Abhishek Sagar"
-recvname = "receptionist"
-sub = "Testing email"
-body = "who cares"
-message = "From: " + yourname + "\n" 
-message = message + "To: " + recvname + "\n"
-message = message + "Subject: " + sub + "\n" 
-message = message + body
-try:
-    print "Sending email to " + recvname + "...",
-    server = smtplib.SMTP('smtp.gmail.com:587')
-    username = 'XYZ@gmail.com'  
-    password = '*****'  
-    server.ehlo()
-    server.starttls()  
-    server.login(username,password)  
-    server.sendmail(sender, receivers, message)         
-    server.quit()
-    print "successfully sent!"
-except  Exception:
-    print "Error: unable to send email"
-''' 
 
 def get_current_ip(v = 4):
     if v == 4 :
