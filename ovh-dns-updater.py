@@ -104,19 +104,18 @@ def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain
   except smtplib.SMTPException:
      print( timestamp()," : Error unable to send DNS Update Problem email" % str(error))
           
-'''
-If You whish to use 'localhost' configured SMTP, you can use this code instead)
-def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain.com') :
-  import smtplib
 
-  try :
-     smtpObj = smtplib.SMTP('localhost')
-     smtpObj.sendmail(sender, receiver,
-         "From: {}\nTo: {}\nSubject: DNS update problem\n\nThe ovh-dns-updater.py script reports:\n{}\n".format(sender, receiver, msg)
-         )
-  except smtplib.SMTPException:
-     print( timestamp()," : Error unable to send email")
-'''
+#If You whish to use 'localhost' configured SMTP, you can use this code instead)
+#def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain.com') :
+#  import smtplib
+#
+#  try :
+#     smtpObj = smtplib.SMTP('localhost')
+#     smtpObj.sendmail(sender, receiver,
+#         "From: {}\nTo: {}\nSubject: DNS update problem\n\nThe ovh-dns-updater.py script reports:\n{}\n".format(sender, receiver, msg)
+#         )
+#  except smtplib.SMTPException:
+#     print( timestamp()," : Error unable to send email")
 
 def get_current_ip(v = 4):
     if v == 4 :
