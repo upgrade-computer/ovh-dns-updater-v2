@@ -88,6 +88,23 @@ checkDNS_interval_hrs = 12.1 # when the saved IP addresses are old, check the DN
 current_ip_file = "/tmp/current_ip.json"
 
 
+def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain.com', yourname = 'Your Name', SMTPuser = 'user@mydomain.com', SMTPpass = 'my_secure_pass') :
+  import smtplib
+
+  try :
+     smtpObj = smtplib.SMTP('host='smtp.mydomain.com', port=587')
+     smtpObj.ehlo()
+     smtpObj.starttls()  
+     smtpObj.login(SMTPuser,SMTPpass)
+     smtpObj.sendmail(sender, receiver,
+         "From: {}\nTo: {}\nSubject: DNS update problem\n\nThe ovh-dns-updater.py script reports:\n{}\n".format(sender, receiver, msg)
+     smtpObj.quit()
+     print (timestamp()," : DNS Update Problem : email successfully sent!")
+
+  except smtplib.SMTPException:
+     print( timestamp()," : Error unable to send DNS Update Problem email")
+'''
+OLD CODE
 def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain.com') :
   import smtplib
 
@@ -98,6 +115,36 @@ def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain
          )
   except smtplib.SMTPException:
      print( timestamp()," : Error unable to send email")
+'''
+
+#Email Test 
+'''
+#!/usr/bin/env python
+import smtplib
+sender = "sachinites@gmail.com"
+receivers = ["abhisheks@cse.iitb.ac.in"]
+yourname = "Abhishek Sagar"
+recvname = "receptionist"
+sub = "Testing email"
+body = "who cares"
+message = "From: " + yourname + "\n" 
+message = message + "To: " + recvname + "\n"
+message = message + "Subject: " + sub + "\n" 
+message = message + body
+try:
+    print "Sending email to " + recvname + "...",
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    username = 'XYZ@gmail.com'  
+    password = '*****'  
+    server.ehlo()
+    server.starttls()  
+    server.login(username,password)  
+    server.sendmail(sender, receivers, message)         
+    server.quit()
+    print "successfully sent!"
+except  Exception:
+    print "Error: unable to send email"
+''' 
 
 def get_current_ip(v = 4):
     if v == 4 :
@@ -126,6 +173,9 @@ def get_current_ip(v = 4):
             quit()
     else :
         return False
+
+
+
 
 def timestamp() :
     return time.asctime( time.localtime(time.time()) )
