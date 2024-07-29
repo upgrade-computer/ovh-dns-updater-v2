@@ -6,6 +6,9 @@ import json
 import ovh
 import sys
 import requests, time
+#to use 'hostname as subdomain, impot socket module:
+#import socket
+
 
 '''
 API credentials
@@ -68,6 +71,11 @@ default_ttl =  600  # seconds
 #        }
 #    ]
 #
+
+myhostname = socket.gethostname()
+#you can use myhostname (without ") as subdomain, if you wish to create an host record like : $HOSTNAME.mydomain.tld
+#usefull if you bring up a lot of devices :-)
+
 hosts = [
         {
             "domain": "mydomain.tld", # Required
