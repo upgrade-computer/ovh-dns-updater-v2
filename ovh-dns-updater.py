@@ -102,16 +102,15 @@ def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain
   try :
      smtpObj = smtplib.SMTP('host='smtp.mydomain.com', port=587')
      smtpObj.ehlo()
-     smtpObj.starttls()  
+     smtpObj.starttls()
      smtpObj.login(SMTPuser,SMTPpass)
-     smtpObj.sendmail(sender, receiver,
-         "From: {}\nTo: {}\nSubject: DNS update problem\n\nThe ovh-dns-updater.py script reports:\n{}\n".format(sender, receiver, msg)
+     smtpObj.sendmail("From: {}\nTo: {}\nSubject: DNS update problem\n\nThe ovh-dns-updater.py script reports:\n{}\n".format(sender, receiver, msg))
      smtpObj.quit()
      print (timestamp()," : DNS Update Problem : email successfully sent!")
 
   except smtplib.SMTPException:
      print (timestamp()," : Error unable to send DNS Update Problem email" % str(error))
-     print (timestamp(), % str(error))
+     print (timestamp()," : Unable to send Email" % str(error))
           
 
 #If You whish to use 'localhost' configured SMTP, you can use this code instead)
