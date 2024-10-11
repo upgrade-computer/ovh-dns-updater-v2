@@ -100,7 +100,7 @@ def send_email(msg, sender = 'no_reply@mydomain.com', receiver = 'admin@mydomain
   import smtplib
 
   try :
-     smtpObj = smtplib.SMTP(host=smtp.mydomain.com, port=587)
+     smtpObj = smtplib.SMTP(host='smtp.mydomain.com', port='587')
      smtpObj.ehlo()
      smtpObj.starttls()
      smtpObj.login(SMTPuser,SMTPpass)
