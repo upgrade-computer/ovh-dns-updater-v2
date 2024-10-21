@@ -87,6 +87,51 @@ Alternative ways to configure OVH Credentials : https://github.com/ovh/python-ov
 
 Other config parameters (domain names etc.) are setup directly inside the script. See explanations in the code.
 
+### Config 'in code'
+
+To configure script : 
+
+- Edit the following part of the code :
+
+```
+hosts = [
+        {
+            "domain": "mydomain.tld", # Required
+            "subdomain": "www", # Required. Explicit subdomain or empty string "" (for @) or "*" for wildcard
+            #"ipv6": any_value_except_False # Optional : maintain corresponding record, when possible
+            "ipv4": False, #explicitly disable modifiying ipv4 (A) records, even if public IPV4 exists (a possibly erroneous record would be left as-is)
+            #"ttl": 60 # optional : if 'ttl' in specified in host, overrides the global default value 
+        },
+        {
+            "domain": "otherdomain.tld",
+            "subdomain": ""
+            # 'ipv4' and 'ipv6' are not listed : automatically maintain any/both records, according to availability
+        }
+    ]
+```
+This part configures domain names, and/or sub-domain for wich you want to create a record.
+Let's walk trhough an example : you want to configure "host01.mydomain.tld" to Host01 IPv4 / IPv6 address,  and "*.host01.mydomain.tld" to point to Host01 IPv4 IP Address only.
+Modify script as : 
+
+```
+hosts = [
+        {
+            "domain": "mydomain.tld", # Required
+            "subdomain": "host01", # Required. Explicit subdomain or empty string "" (for @) or "*" for wildcard
+            "ipv6": True # Optional : maintain corresponding record, when possible
+            "ipv4": True, #explicitly disable modifiying ipv4 (A) records, even if public IPV4 exists (a possibly erroneous record would be left as-is)
+            #"ttl": 60 # optional : if 'ttl' in specified in host, overrides the global default value 
+        },
+        {
+            "domain": "host01.mydomain.tld",
+            "subdomain": "*"
+            "ipv4": True
+            "ipv6": False
+            # 'ipv4' and 'ipv6' are not listed : automatically maintain any/both records, according to availability
+        }
+    ]
+```
+
 ### Run periodically with systemd
 To run the updater automatically, copy (or link) the *ovh-dns-updater.timer* and *ovh-dns-updater.service* files in */etc/systemd/system* and run
 ```
