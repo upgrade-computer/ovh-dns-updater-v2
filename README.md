@@ -124,8 +124,8 @@ hosts = [
         },
         {
             "domain": "host01.mydomain.tld",
-            "subdomain": "*"
-            "ipv4": True
+            "subdomain": "*",
+            "ipv4": True,
             "ipv6": False
             # 'ipv4' and 'ipv6' are not listed : automatically maintain any/both records, according to availability
         }
