@@ -132,6 +132,57 @@ hosts = [
     ]
 ```
 
+- If you want to use Host01 hostname (may it be "foo") as your subdomain, in case of automated deployment, or hostname change, do the following :
+
+Import "socket" python module, uncomment (Line 10) : 
+```
+#import socket
+```
+change to : 
+```
+import socket
+```
+Activate "myhostname" variable, uncomment (Line 75)
+```
+#myhostname = socket.gethostname()
+```
+change to : 
+```
+myhostname = socket.gethostname()
+```
+
+Modify your hosts configuration as follow (Line 79)
+```
+hosts = [
+        {
+            "domain": "mydomain.tld", # Required
+            "subdomain": "host01", # Required. Explicit subdomain or empty string "" (for @) or "*" for wildcard
+            "ipv6": True, # Optional : maintain corresponding record, when possible
+            "ipv4": True #explicitly disable modifiying ipv4 (A) records, even if public IPV4 exists (a possibly erroneous record would be left as-is)
+            #"ttl": 60 # optional : if 'ttl' in specified in host, overrides the global default value 
+        },
+        {
+            "domain": "host01.mydomain.tld",
+            "subdomain": "*",
+            "ipv4": True,
+            "ipv6": False
+            # 'ipv4' and 'ipv6' are not listed : automatically maintain any/both records, according to availability
+        }
+    ]
+```
+Change to : 
+```
+hosts = [
+        {
+            "domain": "mydomain.tld", # Required
+            "subdomain": myhostname, # Required. Explicit subdomain or empty string "" (for @) or "*" for wildcard. myhostname, without quotes, if using it as a variable.
+            "ipv6": True, # Optional : maintain corresponding record, when possible
+            "ipv4": True #explicitly disable modifiying ipv4 (A) records, even if public IPV4 exists (a possibly erroneous record would be left as-is)
+            #"ttl": 60 # optional : if 'ttl' in specified in host, overrides the global default value 
+        }
+    ]
+```
+
 ### Run periodically with systemd
 To run the updater automatically, copy (or link) the *ovh-dns-updater.timer* and *ovh-dns-updater.service* files in */etc/systemd/system* and run
 ```
