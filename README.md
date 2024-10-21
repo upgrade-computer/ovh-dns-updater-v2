@@ -1,5 +1,7 @@
 # ovh-dns-updater
-simple python script to update A/AAAA DNS records at OVH registrar 
+Simple python script to update A/AAAA DNS records at OVH registrar 
+Forked from : https://github.com/slowphil/ovh-dns-updater
+Updated by : https://github.com/gigadjo
 
 
 This script can maintain the A and/or AAAA DNS records (*)
