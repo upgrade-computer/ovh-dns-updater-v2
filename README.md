@@ -184,7 +184,42 @@ hosts = [
 ```
 
 ### Run periodically with systemd
-To run the updater automatically, copy (or link) the *ovh-dns-updater.timer* and *ovh-dns-updater.service* files in */etc/systemd/system* and run
+To run the updater automatically: 
+
+- Edit ovh-dns-updater.service file :
+
+```
+[Unit]
+Description=Check DNS records at OVH
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -u /absolute/path/to/ovh-dns-updater.py
+#StandardOutput=journal+console
+StandardOutput=file:/var/log/foo/stdout
+StandardError=file:/var/log/foo/stderr
+```
+Let's suppose you cloned Git repo to /opt and want logs to be stored in /var/log/ovh-dns-updater/ : 
+
+```
+[Unit]
+Description=Check DNS records at OVH
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -u /opt/ovh-dns-updater-v2/ovh-dns-updater.py
+#StandardOutput=journal+console
+StandardOutput=file:/var/log/ovh-dns-updater/stdout
+StandardError=file:/var/log/ovh-dns-updater/stderr
+```
+
+
+copy (or link) the *ovh-dns-updater.timer* and *ovh-dns-updater.service* files in */etc/systemd/system* and run
+
 ```
 systemctl enable ovh-dns-updater.timer
 systemctl start ovh-dns-updater.timer
