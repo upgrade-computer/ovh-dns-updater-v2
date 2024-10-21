@@ -118,8 +118,8 @@ hosts = [
         {
             "domain": "mydomain.tld", # Required
             "subdomain": "host01", # Required. Explicit subdomain or empty string "" (for @) or "*" for wildcard
-            "ipv6": True # Optional : maintain corresponding record, when possible
-            "ipv4": True, #explicitly disable modifiying ipv4 (A) records, even if public IPV4 exists (a possibly erroneous record would be left as-is)
+            "ipv6": True, # Optional : maintain corresponding record, when possible
+            "ipv4": True #explicitly disable modifiying ipv4 (A) records, even if public IPV4 exists (a possibly erroneous record would be left as-is)
             #"ttl": 60 # optional : if 'ttl' in specified in host, overrides the global default value 
         },
         {
