@@ -88,8 +88,9 @@ Alternative ways to configure OVH Credentials : https://github.com/ovh/python-ov
 Other config parameters (domain names etc.) are also setup directly inside the script. See explanations in the code.
 
 ### Run periodically with systemd
-To run the updater automatically, copy (or link) the ovh-dns-updater.timer and ovh-dns-updater.service files in /etc/systemd/system and run
+To run the updater automatically, copy (or link) the *ovh-dns-updater.timer* and *ovh-dns-updater.service* files in */etc/systemd/system* and run
+```
 systemctl enable ovh-dns-updater.timer
 systemctl start ovh-dns-updater.timer
-
+```
 
